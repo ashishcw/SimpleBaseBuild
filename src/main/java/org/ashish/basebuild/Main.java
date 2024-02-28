@@ -2,6 +2,8 @@ package org.ashish.basebuild;
 
 import org.ashish.basebuild.constant.Constants;
 import org.ashish.basebuild.display.Window;
+import org.ashish.basebuild.handler.MainHandler;
+import org.ashish.basebuild.objects.TempObj;
 
 import java.awt.*;
 
@@ -13,6 +15,9 @@ public class Main extends Canvas implements Runnable {
 
     //Window
     Window window;
+
+    //Handler
+    MainHandler mainHandler;
 
 
     public Main() {
@@ -33,7 +38,10 @@ public class Main extends Canvas implements Runnable {
             this.window = new Window(this);
         }
 
-
+        if(this.mainHandler == null){
+            this.mainHandler = new MainHandler();
+        }
+        this.mainHandler.addGameObjectToList(new TempObj(100, 150));
         this.requestFocus();
         start();
     }
@@ -112,6 +120,10 @@ public class Main extends Canvas implements Runnable {
     }
 
     private void tick(){
+        //handler
+        if(this.mainHandler != null){
+            this.mainHandler.tick();
+        }
     }
 
     private void render(){
@@ -126,6 +138,9 @@ public class Main extends Canvas implements Runnable {
         g.fillRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         //additional render calls go here
+        if(this.mainHandler != null){
+            this.mainHandler.render(g);
+        }
 
         bs.show();
         g.dispose();
