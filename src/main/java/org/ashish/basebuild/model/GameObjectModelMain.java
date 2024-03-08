@@ -22,6 +22,7 @@ public abstract class GameObjectModelMain {
         Resources,
         NPC_Dumper,
         NPC_Gatherer,
+        Base_Home,
         None
     }
 
