@@ -7,6 +7,7 @@ import org.ashish.basebuild.handler.input.KeyboardInput;
 import org.ashish.basebuild.handler.input.mouseinput.MouseInput;
 import org.ashish.basebuild.objects.TempObj;
 import org.ashish.basebuild.objects.common.Node;
+import org.ashish.basebuild.objects.map.MapGeneration;
 import org.ashish.basebuild.objects.player.Player;
 
 import java.awt.*;
@@ -72,6 +73,10 @@ public class Main extends Canvas implements Runnable {
                 this.mainHandler.addGameObjectToList(Node.nodes[i][j]);
             }
         }
+
+
+        //Map Generation
+        MapGeneration mapGeneration = new MapGeneration(this.mainHandler);
 
 
 
