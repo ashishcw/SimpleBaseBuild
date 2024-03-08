@@ -1,5 +1,7 @@
 package org.ashish.basebuild.utils;
 
+import java.awt.*;
+
 public class MathHelper {
     public static int Clamp(int value, int max, int min){
         if(value > max){
@@ -8,6 +10,13 @@ public class MathHelper {
             value = min;
         }
         return value;
+    }
+
+    public static boolean isColliding(Rectangle source, Rectangle target){
+        if(source.intersects(target)){
+            return true;
+        }
+        return false;
     }
 
 

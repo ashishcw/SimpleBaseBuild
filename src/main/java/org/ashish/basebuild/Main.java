@@ -4,10 +4,14 @@ import org.ashish.basebuild.constant.Constants;
 import org.ashish.basebuild.display.Window;
 import org.ashish.basebuild.handler.MainHandler;
 import org.ashish.basebuild.handler.input.KeyboardInput;
+import org.ashish.basebuild.handler.input.mouseinput.MouseInput;
 import org.ashish.basebuild.objects.TempObj;
+import org.ashish.basebuild.objects.common.Node;
 import org.ashish.basebuild.objects.player.Player;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Main extends Canvas implements Runnable {
 
@@ -23,6 +27,7 @@ public class Main extends Canvas implements Runnable {
 
     //Input
     KeyboardInput keyboardInput;
+    MouseInput mouseInput;
 
 
     public Main() {
@@ -52,6 +57,23 @@ public class Main extends Canvas implements Runnable {
             this.keyboardInput = new KeyboardInput();
         }
         this.addKeyListener(this.keyboardInput);
+
+        //Input-Mouse
+        if(this.mouseInput == null){
+            this.mouseInput = new MouseInput();
+        }
+        this.addMouseListener(this.mouseInput);
+
+        //Node
+        Node.createNodeGrid();
+
+        for(int i = 0; i < Constants.MAX_ROWS; i++){
+            for(int j = 0; j < Constants.MAX_COLS; j++){
+                this.mainHandler.addGameObjectToList(Node.nodes[i][j]);
+            }
+        }
+
+
 
         //player
         //this.mainHandler.addGameObjectToList(new Player(100, 150, this.keyboardInput));
