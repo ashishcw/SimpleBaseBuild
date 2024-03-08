@@ -3,7 +3,9 @@ package org.ashish.basebuild;
 import org.ashish.basebuild.constant.Constants;
 import org.ashish.basebuild.display.Window;
 import org.ashish.basebuild.handler.MainHandler;
+import org.ashish.basebuild.handler.input.KeyboardInput;
 import org.ashish.basebuild.objects.TempObj;
+import org.ashish.basebuild.objects.player.Player;
 
 import java.awt.*;
 
@@ -18,6 +20,9 @@ public class Main extends Canvas implements Runnable {
 
     //Handler
     MainHandler mainHandler;
+
+    //Input
+    KeyboardInput keyboardInput;
 
 
     public Main() {
@@ -41,7 +46,18 @@ public class Main extends Canvas implements Runnable {
         if(this.mainHandler == null){
             this.mainHandler = new MainHandler();
         }
-        this.mainHandler.addGameObjectToList(new TempObj(100, 150));
+
+        //Input-Keyboard
+        if(this.keyboardInput == null){
+            this.keyboardInput = new KeyboardInput();
+        }
+        this.addKeyListener(this.keyboardInput);
+
+        //player
+        //this.mainHandler.addGameObjectToList(new Player(100, 150, this.keyboardInput));
+        this.mainHandler.addGameObjectToList(new Player(100, 150, this.keyboardInput, this.mainHandler));
+
+
         this.requestFocus();
         start();
     }
