@@ -11,12 +11,28 @@ public abstract class GameObjectModelMain {
     private int row, col;
     private Color color;
     private String name;
-    private boolean isActiveinScene;
+    private boolean isActiveinScene = false;
+    private boolean isVisible = false;
+    private Rectangle HitBox;
+
+    public enum BaseObjectType{
+        Player,
+        Enemy,
+        Path,
+        Resources,
+        NPC_Dumper,
+        NPC_Gatherer,
+        None
+    }
+
+    private BaseObjectType baseObjectType;
+
 
     public GameObjectModelMain(int xPos, int yPos) {
         this.id = UUID.randomUUID();
         this.xPos = xPos;
         this.yPos = yPos;
+        this.baseObjectType = BaseObjectType.None;
     }
 
     public abstract void tick();
@@ -112,5 +128,29 @@ public abstract class GameObjectModelMain {
 
     public void setActiveinScene(boolean activeinScene) {
         isActiveinScene = activeinScene;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
+    public Rectangle getHitBox() {
+        return HitBox;
+    }
+
+    public void setHitBox(Rectangle hitBox) {
+        HitBox = hitBox;
+    }
+
+    public BaseObjectType getBaseObjectType() {
+        return baseObjectType;
+    }
+
+    public void setBaseObjectType(BaseObjectType baseObjectType) {
+        this.baseObjectType = baseObjectType;
     }
 }
