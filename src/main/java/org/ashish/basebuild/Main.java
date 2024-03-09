@@ -80,7 +80,7 @@ public class Main extends Canvas implements Runnable {
         MapGeneration mapGeneration = new MapGeneration(this.mainHandler);
 
         //UI
-        var uiObj = new UIMain(this.window.getFrame(), this);
+        //var uiObj = new UIMain(this.window.getFrame(), this);
 
 
 

@@ -16,60 +16,60 @@ public class KeyboardInput extends KeyAdapter {
     //keys 2 = up
     //keys 3 = down
 
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if(key == KeyEvent.VK_D){
+        if (key == KeyEvent.VK_D) {
             keys[0] = true;
         }
 
-        if(key == KeyEvent.VK_A){
+        if (key == KeyEvent.VK_A) {
             keys[1] = true;
         }
 
-        if(key == KeyEvent.VK_W){
+        if (key == KeyEvent.VK_W) {
             keys[2] = true;
         }
 
-        if(key == KeyEvent.VK_S){
+        if (key == KeyEvent.VK_S) {
             keys[3] = true;
         }
 
 
     }
 
-    public void keyReleased(KeyEvent e){
+    public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
 
-        if(key == KeyEvent.VK_D){
+        if (key == KeyEvent.VK_D) {
             keys[0] = false;
 
         }
 
-        if(key == KeyEvent.VK_A){
+        if (key == KeyEvent.VK_A) {
             keys[1] = false;
         }
 
-        if(key == KeyEvent.VK_W){
+        if (key == KeyEvent.VK_W) {
             keys[2] = false;
         }
 
-        if(key == KeyEvent.VK_S){
+        if (key == KeyEvent.VK_S) {
             keys[3] = false;
         }
 
-        if(key == KeyEvent.VK_SPACE){
+        if (key == KeyEvent.VK_SPACE) {
             GameObjectModelMain playerObj = null;
             for (var playerItem : MainHandler.allObjectsList) {
-                if(playerItem.getBaseObjectType() == GameObjectModelMain.BaseObjectType.Player){
+                if (playerItem.getBaseObjectType() == GameObjectModelMain.BaseObjectType.Player) {
                     playerObj = playerItem;
                     break;
                 }
             }
             var clickedNode = Node.getaClickedNode(new Point(playerObj.getxPos(), playerObj.getyPos()));
 
-            if(clickedNode != null){
+            if (clickedNode != null) {
                 System.out.println("Row Position : " + clickedNode.getRow());
                 System.out.println("Col Position : " + clickedNode.getCol());
                 System.out.println("x Position : " + clickedNode.getxPos());
@@ -80,5 +80,6 @@ public class KeyboardInput extends KeyAdapter {
             clickedNode.setNodeType(Node.NodeType.block);
             Node.nodes[clickedNode.getRow()][clickedNode.getCol()] = clickedNode;
 
+        }
     }
 }
