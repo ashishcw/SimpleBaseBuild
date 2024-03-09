@@ -79,7 +79,6 @@ public class KeyboardInput extends KeyAdapter {
 
             clickedNode.setNodeType(Node.NodeType.block);
             Node.nodes[clickedNode.getRow()][clickedNode.getCol()] = clickedNode;
-        }
 
     }
 }
