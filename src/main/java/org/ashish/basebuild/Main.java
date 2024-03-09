@@ -9,6 +9,7 @@ import org.ashish.basebuild.objects.TempObj;
 import org.ashish.basebuild.objects.common.Node;
 import org.ashish.basebuild.objects.map.MapGeneration;
 import org.ashish.basebuild.objects.player.Player;
+import org.ashish.basebuild.ui.UIMain;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -77,6 +78,11 @@ public class Main extends Canvas implements Runnable {
 
         //Map Generation
         MapGeneration mapGeneration = new MapGeneration(this.mainHandler);
+
+        //UI
+        var uiObj = new UIMain(this.window.getFrame(), this);
+
+
 
 
 

@@ -32,4 +32,8 @@ public class Window {
 
         this.frame.pack();
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }
