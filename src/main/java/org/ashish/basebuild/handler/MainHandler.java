@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainHandler {
-    public List<GameObjectModelMain>allObjectsList = new ArrayList<>();
+    public static List<GameObjectModelMain>allObjectsList = new ArrayList<>();
 
     public void tick(){
         if(this.allObjectsList.size() > 0){

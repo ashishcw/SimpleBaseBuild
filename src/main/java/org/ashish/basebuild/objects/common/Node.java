@@ -33,9 +33,14 @@ public class Node extends GameObjectModelMain {
 
     @Override
     public void render(Graphics g) {
+        nodeColorScheme();
         g.setColor(this.getColor());
         if(
                 this.getNodeType() == NodeType.start
+                ||
+                this.getNodeType() == NodeType.end
+                ||
+                this.getNodeType() == NodeType.block
         ){
             g.fillRect(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight());
         }else {

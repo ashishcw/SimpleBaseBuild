@@ -1,7 +1,11 @@
 package org.ashish.basebuild.handler.input;
 
-import org.ashish.basebuild.ui.UIMain;
+import org.ashish.basebuild.Main;
+import org.ashish.basebuild.handler.MainHandler;
+import org.ashish.basebuild.model.GameObjectModelMain;
+import org.ashish.basebuild.objects.common.Node;
 
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -55,13 +59,26 @@ public class KeyboardInput extends KeyAdapter {
             keys[3] = false;
         }
 
-        //TODO:Delete later
         if(key == KeyEvent.VK_SPACE){
-            //UIMain.tempTotal++;
-            UIMain mainUI = new UIMain();
-            UIMain.tempTotal++;
-            mainUI.updateTextLable();
-        }
+            GameObjectModelMain playerObj = null;
+            for (var playerItem : MainHandler.allObjectsList) {
+                if(playerItem.getBaseObjectType() == GameObjectModelMain.BaseObjectType.Player){
+                    playerObj = playerItem;
+                    break;
+                }
+            }
+            var clickedNode = Node.getaClickedNode(new Point(playerObj.getxPos(), playerObj.getyPos()));
+
+            if(clickedNode != null){
+                System.out.println("Row Position : " + clickedNode.getRow());
+                System.out.println("Col Position : " + clickedNode.getCol());
+                System.out.println("x Position : " + clickedNode.getxPos());
+                System.out.println("y Position : " + clickedNode.getyPos());
+                System.out.println("***************");
+            }
+
+            clickedNode.setNodeType(Node.NodeType.block);
+            Node.nodes[clickedNode.getRow()][clickedNode.getCol()] = clickedNode;
 
     }
 }

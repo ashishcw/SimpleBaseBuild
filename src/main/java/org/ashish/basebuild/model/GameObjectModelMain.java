@@ -18,6 +18,7 @@ public abstract class GameObjectModelMain {
     public enum BaseObjectType{
         Player,
         Enemy,
+        Enemy_Path,
         Path,
         Resources,
         NPC_Dumper,
