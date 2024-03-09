@@ -33,4 +33,12 @@ public class CoalResource extends GameObjectModelMain {
         //g.setColor(Color.RED);
         //g.drawRect((int)this.getHitBox().getX(), (int)this.getHitBox().getY(), this.getHitBox().width, this.getHitBox().height);
     }
+
+    public ResourceType.RawResourceType getRawResourceType() {
+        return rawResourceType;
+    }
+
+    public void setRawResourceType(ResourceType.RawResourceType rawResourceType) {
+        this.rawResourceType = rawResourceType;
+    }
 }

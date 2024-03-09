@@ -4,15 +4,26 @@ import org.ashish.basebuild.constant.Constants;
 import org.ashish.basebuild.handler.MainHandler;
 import org.ashish.basebuild.handler.input.KeyboardInput;
 import org.ashish.basebuild.model.GameObjectModelMain;
+import org.ashish.basebuild.objects.manager.ResourceManager;
+import org.ashish.basebuild.objects.map.MapGeneration;
+import org.ashish.basebuild.objects.map.Resources.CoalResource;
+import org.ashish.basebuild.objects.map.Resources.IronResource;
+import org.ashish.basebuild.objects.map.Resources.WaterResource;
+import org.ashish.basebuild.objects.map.constants.ResourceType;
+import org.ashish.basebuild.objects.map.home.HomeBase;
 import org.ashish.basebuild.utils.MathHelper;
 
 import java.awt.*;
+import java.util.Map;
 
 public class Player extends GameObjectModelMain {
 
     private float acc = 1f;
 
     private float dcc = 0.5f;
+
+    private float gatheringRate = 0.5f, dumpingRate = 0.5f, ironResources = 0.0f, waterResources = 0.0f, coalResources = 0.0f;
+    private float ironResourcesMAX = 20.0f, waterResourcesMAX = 20.0f, coalResourcesMAX = 20.0f;
 
     private KeyboardInput keyInputHandler;
 
@@ -39,9 +50,11 @@ public class Player extends GameObjectModelMain {
     public void tick() {
         if(this.isActiveinScene()){
             move();
+
+            //check collision
+            collision();
+
         }
-
-
     }
 
     @Override
@@ -120,5 +133,107 @@ public class Player extends GameObjectModelMain {
 
         this.setxPos(xpos);
         this.setyPos(ypos);
+    }
+
+    private void collision(){
+        for(int i = 0; i < MapGeneration.interactableResources.size(); i++){
+            var mapGenerationInteractableResourceTemp = MapGeneration.interactableResources.get(i);
+            if(
+                    mapGenerationInteractableResourceTemp.getBaseObjectType() == BaseObjectType.Base_Home
+                    ||
+                    mapGenerationInteractableResourceTemp.getBaseObjectType() == BaseObjectType.Resources
+            ){
+                if(MathHelper.isColliding(this.getHitBox(), mapGenerationInteractableResourceTemp.getHitBox())){
+                    //System.out.println("Player collision with " + MapGeneration.interactableResources.get(i).getClass().getSimpleName());
+                    if(mapGenerationInteractableResourceTemp.getName().contains("Coal")){
+                        var tempResource = (CoalResource)mapGenerationInteractableResourceTemp;
+                        gatherResource(tempResource.getRawResourceType());
+                    }
+
+                    if(mapGenerationInteractableResourceTemp.getName().contains("Water")){
+                        var tempResource = (WaterResource)mapGenerationInteractableResourceTemp;
+                        gatherResource(tempResource.getRawResourceType());
+                    }
+
+                    if(mapGenerationInteractableResourceTemp.getName().contains("Iron")){
+                        var tempResource = (IronResource)mapGenerationInteractableResourceTemp;
+                        gatherResource(tempResource.getRawResourceType());
+                    }
+
+                    if(mapGenerationInteractableResourceTemp.getName().contains("Home")){
+                        var tempResource = (HomeBase)mapGenerationInteractableResourceTemp;
+                        //gatherResource(tempResource.getRawResourceType());
+                        this.dumpResource(tempResource.getBaseObjectType());
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    private void gatherResource(ResourceType.RawResourceType rawResourceType){
+        if(this.keyInputHandler.keys[4]){
+            //Key pressed
+            if(rawResourceType == ResourceType.RawResourceType.Coal_Resource){
+                if(coalResources < coalResourcesMAX){
+                    coalResources += gatheringRate;
+                    System.out.println(rawResourceType + " : " + coalResources);
+                }
+
+            }
+
+            if(rawResourceType == ResourceType.RawResourceType.Iron_Resource){
+                if(ironResources < ironResourcesMAX){
+                    ironResources += gatheringRate;
+                    System.out.println(rawResourceType + " : " + ironResources);
+                }
+
+            }
+
+            if(rawResourceType == ResourceType.RawResourceType.Water_Resource){
+                if(waterResources < waterResourcesMAX){
+                    waterResources += gatheringRate;
+                    System.out.println(rawResourceType + " : " + waterResources);
+                }
+
+            }
+
+        }
+    }
+
+    private void dumpResource(BaseObjectType baseObjectType){
+        if(this.keyInputHandler.keys[4]){
+
+            if(baseObjectType == BaseObjectType.Base_Home){
+                if(coalResources > 0.0f){
+                    coalResources-=dumpingRate;
+                    ResourceManager.COLLECTED_COAL += dumpingRate;
+                    coalResources = MathHelper.ClampFloat(coalResources, coalResourcesMAX, 0);
+                    //System.out.println("Collected Coal : " + coalResources);
+                }
+
+                if(ironResources > 0.0f){
+                    ironResources-=dumpingRate;
+                    ResourceManager.COLLECTED_IRON += dumpingRate;
+                    ironResources = MathHelper.ClampFloat(ironResources, ironResourcesMAX, 0);
+                    //System.out.println("Collected Iron : " + ironResources);
+                }
+
+                if(waterResources > 0.0f){
+                    waterResources-=dumpingRate;
+                    ResourceManager.COLLECTED_WATER += dumpingRate;
+                    waterResources = MathHelper.ClampFloat(waterResources, waterResourcesMAX, 0);
+                    //System.out.println("Collected Water : " + waterResources);
+                }
+
+            }
+
+            System.out.println("Collected Coal : " + ResourceManager.COLLECTED_COAL);
+            System.out.println("Collected Iron : " + ResourceManager.COLLECTED_IRON);
+            System.out.println("Collected Water : " + ResourceManager.COLLECTED_WATER);
+        }
+
     }
 }
