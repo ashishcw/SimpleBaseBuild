@@ -13,6 +13,7 @@ public class HomeBase extends GameObjectModelMain {
         this.setSizeWidth(Constants.NODE_SIZE*4);
         this.setSizeHeight(Constants.NODE_SIZE*4);
         this.setHitBox(new Rectangle(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight()));
+        this.setName("Home-Base");
     }
 
     @Override

@@ -29,7 +29,6 @@ public class Window {
         this.frame.setLocationRelativeTo(null);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.add(this.main);
-
         this.frame.pack();
     }
 

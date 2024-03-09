@@ -10,7 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyboardInput extends KeyAdapter {
-    public boolean[] keys = new boolean[4];
+    //public boolean[] keys = new boolean[4];
+    public boolean[] keys = new boolean[5];
     //keys 0 = Right
     //keys 1 = left
     //keys 2 = up
@@ -33,6 +34,10 @@ public class KeyboardInput extends KeyAdapter {
 
         if (key == KeyEvent.VK_S) {
             keys[3] = true;
+        }
+
+        if (key == KeyEvent.VK_E) {
+            keys[4] = true;
         }
 
 
@@ -59,6 +64,10 @@ public class KeyboardInput extends KeyAdapter {
             keys[3] = false;
         }
 
+        if (key == KeyEvent.VK_E) {
+            keys[4] = false;
+        }
+
         if (key == KeyEvent.VK_SPACE) {
             GameObjectModelMain playerObj = null;
             for (var playerItem : MainHandler.allObjectsList) {
@@ -82,4 +91,6 @@ public class KeyboardInput extends KeyAdapter {
 
         }
     }
+
+
 }
