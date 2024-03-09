@@ -1,5 +1,7 @@
 package org.ashish.basebuild.handler.input;
 
+import org.ashish.basebuild.ui.UIMain;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -51,6 +53,14 @@ public class KeyboardInput extends KeyAdapter {
 
         if(key == KeyEvent.VK_S){
             keys[3] = false;
+        }
+
+        //TODO:Delete later
+        if(key == KeyEvent.VK_SPACE){
+            //UIMain.tempTotal++;
+            UIMain mainUI = new UIMain();
+            UIMain.tempTotal++;
+            mainUI.updateTextLable();
         }
 
     }
