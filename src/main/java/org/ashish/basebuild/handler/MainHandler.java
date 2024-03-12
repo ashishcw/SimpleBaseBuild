@@ -25,15 +25,15 @@ public class MainHandler {
         }
     }
 
-    public void addGameObjectToList(GameObjectModelMain tempObj){
-        if(!this.allObjectsList.contains(tempObj)){
-            this.allObjectsList.add(tempObj);
+    public static void addGameObjectToList(GameObjectModelMain tempObj){
+        if(!allObjectsList.contains(tempObj)){
+            allObjectsList.add(tempObj);
         }
     }
 
-    public void removeGameObjectFromList(GameObjectModelMain tempObj){
-        if(this.allObjectsList.contains(tempObj)){
-            this.allObjectsList.remove(tempObj);
+    public static void removeGameObjectFromList(GameObjectModelMain tempObj){
+        if(allObjectsList.contains(tempObj)){
+            allObjectsList.remove(tempObj);
         }
     }
 

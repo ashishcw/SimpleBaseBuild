@@ -212,6 +212,7 @@ public class Player extends GameObjectModelMain {
                     ResourceManager.COLLECTED_COAL += dumpingRate;
                     coalResources = MathHelper.ClampFloat(coalResources, coalResourcesMAX, 0);
                     //System.out.println("Collected Coal : " + coalResources);
+                    System.out.println("Collected Coal : " + ResourceManager.COLLECTED_COAL);
                 }
 
                 if(ironResources > 0.0f){
@@ -219,6 +220,7 @@ public class Player extends GameObjectModelMain {
                     ResourceManager.COLLECTED_IRON += dumpingRate;
                     ironResources = MathHelper.ClampFloat(ironResources, ironResourcesMAX, 0);
                     //System.out.println("Collected Iron : " + ironResources);
+                    System.out.println("Collected Iron : " + ResourceManager.COLLECTED_IRON);
                 }
 
                 if(waterResources > 0.0f){
@@ -226,13 +228,15 @@ public class Player extends GameObjectModelMain {
                     ResourceManager.COLLECTED_WATER += dumpingRate;
                     waterResources = MathHelper.ClampFloat(waterResources, waterResourcesMAX, 0);
                     //System.out.println("Collected Water : " + waterResources);
+                    System.out.println("Collected Water : " + ResourceManager.COLLECTED_WATER);
                 }
 
             }
 
-            System.out.println("Collected Coal : " + ResourceManager.COLLECTED_COAL);
-            System.out.println("Collected Iron : " + ResourceManager.COLLECTED_IRON);
-            System.out.println("Collected Water : " + ResourceManager.COLLECTED_WATER);
+
+
+
+
         }
 
     }

@@ -3,7 +3,11 @@ package org.ashish.basebuild.handler.input;
 import org.ashish.basebuild.Main;
 import org.ashish.basebuild.handler.MainHandler;
 import org.ashish.basebuild.model.GameObjectModelMain;
+import org.ashish.basebuild.objects.NPCs.CoalGatherer;
+import org.ashish.basebuild.objects.NPCs.IronGatherer;
+import org.ashish.basebuild.objects.NPCs.WaterGatherer;
 import org.ashish.basebuild.objects.common.Node;
+import org.ashish.basebuild.objects.map.constants.ResourceType;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -90,6 +94,20 @@ public class KeyboardInput extends KeyAdapter {
             Node.nodes[clickedNode.getRow()][clickedNode.getCol()] = clickedNode;
 
         }
+
+        if(key == KeyEvent.VK_B){
+            MainHandler.addGameObjectToList(new WaterGatherer(0, 304, ResourceType.RawResourceType.Water_Resource));
+        }
+
+        if(key == KeyEvent.VK_X){
+            MainHandler.addGameObjectToList(new IronGatherer(0, 304, ResourceType.RawResourceType.Iron_Resource));
+        }
+
+        if(key == KeyEvent.VK_C){
+            MainHandler.addGameObjectToList(new CoalGatherer(0, 304, ResourceType.RawResourceType.Coal_Resource));
+        }
+
+
     }
 
 

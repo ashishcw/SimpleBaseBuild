@@ -18,12 +18,22 @@ public class Node extends GameObjectModelMain {
     }
     private NodeType nodeType;
 
+    private Node cameFromNode;
+
+    //pathfinding specific values
+    private int gCost, fCost, hCost;
+
+    private boolean nodeGridGeneration = false;
+
     public Node(int xPos, int yPos) {
         super(xPos, yPos);
         this.setNodeType(NodeType.none);
         this.setSizeWidth(Constants.NODE_SIZE);
         this.setSizeHeight(Constants.NODE_SIZE);
         this.setColor(Color.BLACK);
+        this.setgCost(999);
+        this.sethCost(999);
+        this.setfCost(999);
     }
 
     @Override
@@ -44,7 +54,12 @@ public class Node extends GameObjectModelMain {
         ){
             g.fillRect(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight());
         }else {
-            g.drawRect(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight());
+            if(nodeGridGeneration){
+                g.drawRect(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight());
+            }else {
+                g.fillRect(this.getxPos(), this.getyPos(), this.getSizeWidth(), this.getSizeHeight());
+            }
+
         }
 
     }
@@ -61,7 +76,7 @@ public class Node extends GameObjectModelMain {
         switch (this.getNodeType()){
             case block -> this.setColor(Color.RED);
             case path -> this.setColor(Color.BLUE);
-            case none -> this.setColor(Color.BLACK);
+            case none -> this.setColor(new Color(88, 24, 69));
             case start -> this.setColor(Color.YELLOW);
             case end -> this.setColor(Color.GREEN);
         }
@@ -92,5 +107,37 @@ public class Node extends GameObjectModelMain {
             }
         }
         return returnableNode;
+    }
+
+    public int getgCost() {
+        return gCost;
+    }
+
+    public void setgCost(int gCost) {
+        this.gCost = gCost;
+    }
+
+    public int getfCost() {
+        return fCost;
+    }
+
+    public void setfCost(int fCost) {
+        this.fCost = fCost;
+    }
+
+    public int gethCost() {
+        return hCost;
+    }
+
+    public void sethCost(int hCost) {
+        this.hCost = hCost;
+    }
+
+    public Node getCameFromNode() {
+        return cameFromNode;
+    }
+
+    public void setCameFromNode(Node cameFromNode) {
+        this.cameFromNode = cameFromNode;
     }
 }

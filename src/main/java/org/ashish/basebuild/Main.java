@@ -5,9 +5,11 @@ import org.ashish.basebuild.display.Window;
 import org.ashish.basebuild.handler.MainHandler;
 import org.ashish.basebuild.handler.input.KeyboardInput;
 import org.ashish.basebuild.handler.input.mouseinput.MouseInput;
+import org.ashish.basebuild.objects.NPCs.WaterGatherer;
 import org.ashish.basebuild.objects.TempObj;
 import org.ashish.basebuild.objects.common.Node;
 import org.ashish.basebuild.objects.map.MapGeneration;
+import org.ashish.basebuild.objects.map.constants.ResourceType;
 import org.ashish.basebuild.objects.player.Player;
 import org.ashish.basebuild.ui.UIMain;
 
@@ -81,6 +83,11 @@ public class Main extends Canvas implements Runnable {
 
         //UI
         //var uiObj = new UIMain(this.window.getFrame(), this);
+        //this.mainHandler.addGameObjectToList(new WaterGatherer(256, 208, ResourceType.RawResourceType.Water_Resource));
+        //64, 336
+        //this.mainHandler.addGameObjectToList(new WaterGatherer(64, 336, ResourceType.RawResourceType.Water_Resource));
+
+        //this.mainHandler.addGameObjectToList(new WaterGatherer(0, 304, ResourceType.RawResourceType.Water_Resource));
 
 
 
@@ -184,6 +191,7 @@ public class Main extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
+        g.setColor(new Color(88, 24, 69));
         g.fillRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
         //additional render calls go here
