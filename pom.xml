@@ -21,7 +21,7 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>1.8</version>
+            <version>3.1.0</version>
             <configuration>
                <archive>
                   <!-- Configures the content of the created manifest -->
@@ -30,7 +30,7 @@
                         <addClasspath>true</addClasspath>
                         <!-- Specifies that all dependencies of our application are found -->
                         <!-- Configures the main class of the application -->
-                        <mainClass>src.main.java.org.ashish.basebuild.Main</mainClass>
+                        <mainClass>org.ashish.basebuild.Main</mainClass>
                   </manifest>
                </archive>
             </configuration>            
